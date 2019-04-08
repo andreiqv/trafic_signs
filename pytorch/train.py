@@ -25,7 +25,7 @@ import sys
 import copy
 
 import progressbar
-SHOW_BAR = False
+SHOW_BAR = True
 
 import data_factory
 import settings
