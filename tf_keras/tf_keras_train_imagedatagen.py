@@ -124,15 +124,15 @@ inputs = Input(shape=(INPUT_SIZE, INPUT_SIZE, 3), name='input')
 #Epoch 35/50 - 48s 917ms/step - loss: 0.2145 - acc: 0.9285 - val_loss: 1.3748 - val_acc: 0.7603
 
 from tf_keras_models import *
-model = cnn_128(inputs, num_classes=num_classes)
-#model = cnn_128_rot2(inputs, num_classes=num_classes)
+#model = cnn_128(inputs, num_classes=num_classes)
+model = cnn_128_rot2(inputs, num_classes=num_classes)
 
 #sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 #model.compile(loss='categorical_crossentropy', optimizer=sgd)
 #model.compile(loss='binary_crossentropy', 
 #			optimizer='rmsprop', metrics=['accuracy'])
 model.compile(loss='categorical_crossentropy', 
-			optimizer=keras.optimizers.Adagrad(lr=0.02),
+			optimizer=keras.optimizers.Adagrad(lr=0.05),
 			#optimizer='rmsprop', 
 			metrics=['accuracy'])
 print(model.summary())
@@ -140,14 +140,14 @@ print(model.summary())
 history = model.fit_generator(
         train_generator,
         steps_per_epoch=len(train_generator.filenames) // train_generator.batch_size,
-        epochs=30,
+        epochs=10,
         validation_data=validation_generator,
         validation_steps=len(validation_generator.filenames) // validation_generator.batch_size)
 #model.save_weights('first_try.h5')  # always save your weights after training or during training
-
 #model.fit(X_train, X_train, BATCH_SIZE=32, epochs=10, 
 #	validation_data=(x_val, y_val))
 #score = model.evaluate(x_test, y_test, BATCH_SIZE=32)
+del model
 
 import matplotlib.pyplot as plt
 train_acc = history.history['acc']
@@ -157,4 +157,5 @@ val_loss = history.history['val_loss']
 epochs = range(1, len(train_acc) + 1)
 plt.plot(epochs, train_acc, 'bo', label='training_acc')
 plt.plot(epochs, val_acc, 'g-', label='validation_acc')
+plt.savefig('_out.png')
 plt.show()

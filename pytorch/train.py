@@ -80,14 +80,16 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 			running_loss = 0.0
 			running_corrects = 0
 
-			if SHOW_BAR: bar = progressbar.ProgressBar(maxval=num_batch[phase]).start()
+			if SHOW_BAR: 
+				bar = progressbar.ProgressBar(maxval=num_batch[phase]).start()
 
 			# Iterate over data.
 			for i_batch, (inputs, labels) in enumerate(dataloaders[phase]):
 				inputs = inputs.to(device)
 				labels = labels.to(device)
 
-				if SHOW_BAR: bar.update(i_batch)
+				if SHOW_BAR: 
+					bar.update(i_batch)
 
 				# zero the parameter gradients
 				optimizer.zero_grad()
@@ -115,7 +117,8 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 				running_loss += loss.item() * inputs.size(0)
 				running_corrects += torch.sum(preds == labels.data)
 
-			if SHOW_BAR: bar.finish()	
+			if SHOW_BAR: 
+				bar.finish()	
 
 			epoch_loss = running_loss / dataset_sizes[phase]
 			epoch_acc = running_corrects.double() / dataset_sizes[phase]

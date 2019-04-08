@@ -215,6 +215,7 @@ def single_net(x, num_classes):
 def cnn_128_rot2(inputs, num_classes):
 	# 15 - loss: 1.5206 - acc: 0.4814 - val_loss: 1.4203 - val_acc: 0.5547
 	# 30 - loss: 1.1992 - acc: 0.6339 - val_loss: 1.1288 - val_acc: 0.6584
+	# 100- loss: 1.0006 - acc: 0.7310 - val_loss: 0.9219 - val_acc: 0.7614
 
 	if backend.image_data_format() == 'channels_first':
 		channel_axis = 1
