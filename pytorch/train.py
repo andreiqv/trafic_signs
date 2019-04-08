@@ -25,10 +25,12 @@ import sys
 import copy
 
 import progressbar
-SHOW_BAR = True
-
 import data_factory
 import settings
+from settings import DEBUG
+SHOW_BAR = True
+
+
 data_dir = settings.data_dir 
 
 #root = '/home/andrei/Data/Datasets/Scales/classifier_dataset_181018/'
