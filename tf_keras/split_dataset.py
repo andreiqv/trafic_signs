@@ -8,8 +8,8 @@ if os.path.exists('.local'):
 	dst_dir = '/mnt/lin2/datasets/splited/'
 else:
 	# remote server
-	src_dir = '/home/andrei/work/t7_cv/natural_images/'
-	dst_dir = '/home/andrei/work/t7_cv/natural_images_splited/'
+	src_dir = '/home/andrei/work/t7_cv/trafic_signs/raw/'
+	dst_dir = '/home/andrei/work/t7_cv/trafic_signs/splited/'
 
 parts = ['train', 'valid', 'test']
 
