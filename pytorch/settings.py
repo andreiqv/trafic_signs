@@ -3,12 +3,12 @@ import os
 
 if os.path.exists('.local'):
 	
-	data_dir = '/mnt/lin2/datasets/splited/'
+	data_dir = '/mnt/lin2/datasets/trafic_splited/'
 	num_epochs = 5
 	batch_size = 4
 	num_workers = 2
 
-	SHOW_BAR = False
+	SHOW_BAR = True
 	DEBUG = False
 	TOPk = 3
 

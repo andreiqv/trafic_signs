@@ -105,9 +105,10 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 					#print('outputs: ', outputs)	
 
 				# statistics
-				print('preds: ', preds)
-				print('labels:', labels.data)
-				print('match: ', int(torch.sum(preds == labels.data)))
+				if DEBUG:
+					print('preds: ', preds)
+					print('labels:', labels.data)
+					print('match: ', int(torch.sum(preds == labels.data)))
 
 				running_loss += loss.item() * inputs.size(0)
 				running_corrects += torch.sum(preds == labels.data)
@@ -117,15 +118,16 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
 			epoch_loss = running_loss / dataset_sizes[phase]
 			epoch_acc = running_corrects.double() / dataset_sizes[phase]
 
-			print('{} Loss: {:.4f} Acc: {:.4f}'.format(
-				phase, epoch_loss, epoch_acc))
+			if DEBUG:
+				print('{} Loss: {:.4f} Acc: {:.4f}'.format(
+					phase, epoch_loss, epoch_acc))
 
 			# deep copy the model
 			if phase == 'valid' and epoch_acc > best_acc:
 				best_acc = epoch_acc
 				best_model_wts = copy.deepcopy(model.state_dict())
 
-		print()
+		if DEBUG: print()
 
 	time_elapsed = time.time() - since
 	print('Training complete in {:.0f}m {:.0f}s'.format(
