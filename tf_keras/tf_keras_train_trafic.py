@@ -124,8 +124,8 @@ inputs = Input(shape=(INPUT_SIZE, INPUT_SIZE, 3), name='input')
 #Epoch 35/50 - 48s 917ms/step - loss: 0.2145 - acc: 0.9285 - val_loss: 1.3748 - val_acc: 0.7603
 
 from tf_keras_models import *
-model = cnn_128(inputs, num_classes=num_classes)
-#model = cnn_128_rot2(inputs, num_classes=num_classes)
+#model = cnn_128(inputs, num_classes=num_classes)
+model = cnn_128_rot2(inputs, num_classes=num_classes)
 
 #sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 #model.compile(loss='categorical_crossentropy', optimizer=sgd)
@@ -159,3 +159,11 @@ plt.plot(epochs, train_acc, 'bo', label='training_acc')
 plt.plot(epochs, val_acc, 'g-', label='validation_acc')
 plt.savefig('_out.png')
 
+print(history.history)
+print(type(history.history))
+import pandas as pd
+data = {'epochs':list(epochs),
+		'train_acc': train_acc, 'val_acc':val_acc,
+		'train_loss':train_loss, 'val_loss':val_loss}
+pd.DataFrame(data)
+df.to_csv('_out_results.csv', float_format='%.4f')
