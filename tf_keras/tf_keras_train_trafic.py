@@ -110,22 +110,12 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, MaxPooling2D
 from tensorflow.keras.layers import Input, Activation, Dropout, Flatten, Dense
 from tensorflow.keras.applications.resnet50 import ResNet50
-
-def model_ResNet50(inputs, num_classes):
-	base_model = ResNet50(weights='imagenet', include_top=False, 
-		pooling='avg', input_tensor=inputs)
-	x = base_model.output
-	x = Dense(num_classes, activation='softmax')(x)
-	model = Model(inputs=inputs, outputs=x, name='keras_ResNet50')	
-	return model
+from tf_keras_models import *
 
 inputs = Input(shape=(INPUT_SIZE, INPUT_SIZE, 3), name='input')	
-#model = model_ResNet50(inputs, num_classes)
-#Epoch 35/50 - 48s 917ms/step - loss: 0.2145 - acc: 0.9285 - val_loss: 1.3748 - val_acc: 0.7603
-
-from tf_keras_models import *
-#model = cnn_128(inputs, num_classes=num_classes)
-model = cnn_128_rot2(inputs, num_classes=num_classes)
+model = model_ResNet50(inputs, num_classes)
+#model = cnn_128(inputs, num_classes)
+#model = cnn_128_rot2(inputs, num_classes)
 
 #sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 #model.compile(loss='categorical_crossentropy', optimizer=sgd)
