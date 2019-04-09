@@ -113,9 +113,9 @@ from tensorflow.keras.applications.resnet50 import ResNet50
 from tf_keras_models import *
 
 inputs = Input(shape=(INPUT_SIZE, INPUT_SIZE, 3), name='input')	
-#model = model_ResNet50(inputs, num_classes)
+model = model_ResNet50(inputs, num_classes)
 #model = cnn_128(inputs, num_classes)
-model = cnn_128_rot(inputs, num_classes)
+#model = cnn_128_rot(inputs, num_classes)
 #model = cnn_128_rot2(inputs, num_classes)
 
 #sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
@@ -131,7 +131,7 @@ print(model.summary())
 history = model.fit_generator(
         train_generator,
         steps_per_epoch=len(train_generator.filenames) // train_generator.batch_size,
-        epochs=20,
+        epochs=30,
         validation_data=validation_generator,
         validation_steps=len(validation_generator.filenames) // validation_generator.batch_size)
 #model.save_weights('first_try.h5')  # always save your weights after training or during training
@@ -153,8 +153,9 @@ plt.savefig('_out.png')
 print(history.history)
 print(type(history.history))
 import pandas as pd
-data = {'epochs':list(epochs),
-		'train_acc': train_acc, 'val_acc':val_acc,
-		'train_loss':train_loss, 'val_loss':val_loss}
-pd.DataFrame(data)
+#data = {'epochs':list(epochs),
+#		'train_acc': train_acc, 'val_acc':val_acc,
+#		'train_loss':train_loss, 'val_loss':val_loss}
+df = pd.DataFrame(history.history)
+df['epoch'] = list(range(1, len(history.history['acc']) + 1))
 df.to_csv('_out_results.csv', float_format='%.4f')
