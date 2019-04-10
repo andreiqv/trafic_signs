@@ -113,8 +113,8 @@ from tensorflow.keras.applications.resnet50 import ResNet50
 from tf_keras_models import *
 
 inputs = Input(shape=(INPUT_SIZE, INPUT_SIZE, 3), name='input')	
-model = model_ResNet50(inputs, num_classes)
-#model = cnn_128(inputs, num_classes)
+#model = model_ResNet50(inputs, num_classes)
+model = cnn_128(inputs, num_classes)
 #model = cnn_128_rot(inputs, num_classes)
 #model = cnn_128_rot2(inputs, num_classes)
 
@@ -157,5 +157,6 @@ import pandas as pd
 #		'train_acc': train_acc, 'val_acc':val_acc,
 #		'train_loss':train_loss, 'val_loss':val_loss}
 df = pd.DataFrame(history.history)
-df['epoch'] = list(range(1, len(history.history['acc']) + 1))
-df.to_csv('_out_results.csv', float_format='%.4f')
+epochs_list = list(range(1, len(history.history['acc']) + 1))
+df.insert(0, 'epoch', epochs_list)
+df.to_csv('_out_results.csv', float_format='%.4f', index=False)
