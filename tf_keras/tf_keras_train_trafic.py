@@ -150,8 +150,6 @@ plt.plot(epochs, train_acc, 'bo', label='training_acc')
 plt.plot(epochs, val_acc, 'g-', label='validation_acc')
 plt.savefig('_out.png')
 
-print(history.history)
-print(type(history.history))
 import pandas as pd
 #data = {'epochs':list(epochs),
 #		'train_acc': train_acc, 'val_acc':val_acc,
