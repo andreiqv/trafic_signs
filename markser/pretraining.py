@@ -9,12 +9,15 @@ CLASSES = 43
 
 EPOCHS = 10
 BATCH_SIZE = 32
-STEPS_PER_EPOCH = number_of_samples("train") / BATCH_SIZE
-VALIDATION_STEPS = number_of_samples("valid") / BATCH_SIZE
+#STEPS_PER_EPOCH = number_of_samples("train") / BATCH_SIZE
+#VALIDATION_STEPS = number_of_samples("valid") / BATCH_SIZE
 
 MODEL_FILE = "model.h5"
 TRAIN_DIR = "/home/andrei/work/t7_cv/trafic_signs/splited/train/"
 TEST_DIR = "/home/andrei/work/t7_cv/trafic_signs/splited/valid/"
+STEPS_PER_EPOCH = 27491 / BATCH_SIZE
+VALIDATION_STEPS = 11806  / BATCH_SIZE
+
 
 WIDTH = 299
 HEIGHT = 299
