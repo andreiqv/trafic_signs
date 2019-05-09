@@ -13,8 +13,8 @@ STEPS_PER_EPOCH = number_of_samples("train") / BATCH_SIZE
 VALIDATION_STEPS = number_of_samples("valid") / BATCH_SIZE
 
 MODEL_FILE = "model.h5"
-TRAIN_DIR = "data/train"
-TEST_DIR = "data/validation"
+TRAIN_DIR = "/home/andrei/work/t7_cv/trafic_signs/splited/train/"
+TEST_DIR = "/home/andrei/work/t7_cv/trafic_signs/splited/valid/"
 
 WIDTH = 299
 HEIGHT = 299
