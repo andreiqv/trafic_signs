@@ -7,7 +7,7 @@ from data_preparation import number_of_samples
 
 CLASSES = 43
 
-EPOCHS = 10
+EPOCHS = 30
 BATCH_SIZE = 32
 #STEPS_PER_EPOCH = number_of_samples("train") / BATCH_SIZE
 #VALIDATION_STEPS = number_of_samples("valid") / BATCH_SIZE
@@ -42,7 +42,8 @@ model.compile(
 # data preparation
 train_datagen = ImageDataGenerator(
     preprocessing_function=preprocess_input,
-    rotation_range=40,
+    #rotation_range=40,
+    rotation_range=2,
     width_shift_range=0.2,  
     height_shift_range=0.2,
     shear_range=0.2,
@@ -76,5 +77,7 @@ history = model.fit_generator(
     validation_data=validation_generator,
     validation_steps=VALIDATION_STEPS,
 )
+
+open('history.txt','wt').write(str(history.history))
 
 model.save(MODEL_FILE)
