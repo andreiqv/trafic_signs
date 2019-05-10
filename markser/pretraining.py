@@ -31,8 +31,8 @@ x = Dropout(0.4)(x)
 predictions = Dense(CLASSES, activation="softmax")(x)
 model = Model(inputs=base_model.input, outputs=predictions)
 
-#for layer in base_model.layers:
-#    layer.trainable = False
+for layer in base_model.layers:
+    layer.trainable = False
 
 model.compile(
     optimizer="rmsprop", loss="categorical_crossentropy", metrics=["accuracy"]
