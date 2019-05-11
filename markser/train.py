@@ -53,8 +53,8 @@ def train(model):
     predictions = Dense(CLASSES, activation=ACTIVATION)(x)
     model = Model(inputs=base_model.input, outputs=predictions)
 
-    for layer in base_model.layers:
-        layer.trainable = False
+    #for layer in base_model.layers:
+    #    layer.trainable = False
 
     model.compile(optimizer=OPTIMIZER, loss=OBJECTIVE_FUNCTION, metrics=LOSS_METRICS)
 
