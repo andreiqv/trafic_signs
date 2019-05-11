@@ -7,7 +7,7 @@ from data_preparation import number_of_samples
 
 CLASSES = 43
 
-EPOCHS = 30
+EPOCHS = 2
 BATCH_SIZE = 32
 #STEPS_PER_EPOCH = number_of_samples("train") / BATCH_SIZE
 #VALIDATION_STEPS = number_of_samples("valid") / BATCH_SIZE
@@ -81,3 +81,26 @@ history = model.fit_generator(
 open('history.txt','wt').write(str(history.history))
 
 model.save(MODEL_FILE)
+
+#-----------------
+
+del model
+
+import matplotlib.pyplot as plt
+train_acc = history.history['acc']
+val_acc = history.history['val_acc']
+train_loss = history.history['loss']
+val_loss = history.history['val_loss']
+epochs = range(1, len(train_acc) + 1)
+plt.plot(epochs, train_acc, 'bo', label='training_acc')
+plt.plot(epochs, val_acc, 'g-', label='validation_acc')
+plt.savefig('_out.png')
+
+#data = {'epochs':list(epochs),
+#       'train_acc': train_acc, 'val_acc':val_acc,
+#       'train_loss':train_loss, 'val_loss':val_loss}
+import pandas as pd
+df = pd.DataFrame(history.history)
+epochs_list = list(range(1, len(history.history['acc']) + 1))
+df.insert(0, 'epoch', epochs_list)
+df.to_csv('_out_results.csv', float_format='%.4f', index=False)
