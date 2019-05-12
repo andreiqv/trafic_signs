@@ -60,6 +60,7 @@ def train(model):
     model.compile(optimizer=OPTIMIZER, loss=OBJECTIVE_FUNCTION, metrics=LOSS_METRICS)
 
     # data preparation
+    """
     train_datagen = ImageDataGenerator(
         preprocessing_function=preprocess_input,
         rotation_range=2,
@@ -70,6 +71,11 @@ def train(model):
         horizontal_flip=True,
         fill_mode=FILL_MODE,
     )
+    """
+
+    train_datagen = ImageDataGenerator(
+        preprocessing_function=preprocess_input,
+    )    
 
     validation_datagen = ImageDataGenerator(preprocessing_function=preprocess_input)
 
