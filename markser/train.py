@@ -1,11 +1,11 @@
+import keras
 from keras.applications.inception_v3 import InceptionV3, preprocess_input as prep_incV3
 from keras.applications.resnet50 import ResNet50, preprocess_input as prep_res50
 from keras.callbacks import CSVLogger
 from keras.layers import Dense, Dropout, GlobalAveragePooling2D
 from keras.models import Model
 from keras.preprocessing.image import ImageDataGenerator
-
-from data_preparation import number_of_samples
+#from data_preparation import number_of_samples
 
 CLASSES = 43
 
@@ -15,7 +15,8 @@ ACTIVATION = "softmax"
 CLASS_MODE = "categorical"
 FILL_MODE = "nearest"
 
-OPTIMIZER = "rmsprop"
+#OPTIMIZER = "rmsprop"
+OPTIMIZER = keras.optimizers.Adagrad(lr=0.01)
 OBJECTIVE_FUNCTION = "categorical_crossentropy"
 LOSS_METRICS = ["accuracy"]
 
