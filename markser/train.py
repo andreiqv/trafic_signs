@@ -20,7 +20,7 @@ OPTIMIZER = keras.optimizers.Adagrad(lr=0.01)
 OBJECTIVE_FUNCTION = "categorical_crossentropy"
 LOSS_METRICS = ["accuracy"]
 
-EPOCHS = 20
+EPOCHS = 30
 BATCH_SIZE = 32
 
 MODEL_FILE = "model.h5"
