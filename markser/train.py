@@ -1,7 +1,7 @@
 import keras
 from keras.applications.inception_v3 import InceptionV3, preprocess_input as prep_incV3
 from keras.applications.resnet50 import ResNet50, preprocess_input as prep_res50
-from keras.applications.resnet import ResNet101, ResNet152
+from keras.applications.inception_resnet_v2 import InceptionResNetV2
 from keras.callbacks import CSVLogger
 from keras.layers import Dense, Dropout, GlobalAveragePooling2D
 from keras.models import Model
@@ -42,7 +42,7 @@ def train(model):
 
     if model == "resnet":
         #base_model = ResNet50(include_top=False)
-        base_model = ResNet101(include_top=False)
+        base_model = InceptionResNetV2(include_top=False)
         preprocess_input = prep_res50
         shape = resnet_image_shape
     elif model == "inception":
