@@ -21,7 +21,7 @@ OBJECTIVE_FUNCTION = "categorical_crossentropy"
 LOSS_METRICS = ["accuracy"]
 
 EPOCHS = 30
-BATCH_SIZE = 32
+BATCH_SIZE = 64
 
 MODEL_FILE = "model.h5"
 TRAIN_DIR = "/home/andrei/work/t7_cv/trafic_signs/splited/train/"
@@ -40,7 +40,8 @@ inception_image_shape = (299, 299)
 def train(model):
 
     if model == "resnet":
-        base_model = ResNet50(include_top=False)
+        #base_model = ResNet50(include_top=False)
+        base_model = ResNet101(include_top=False)
         preprocess_input = prep_res50
         shape = resnet_image_shape
     elif model == "inception":
@@ -106,7 +107,8 @@ def train(model):
     return history
 
 
-history = train("inception")
+#history = train("inception")
+history = train("resnet")
 
 #----------------
 
